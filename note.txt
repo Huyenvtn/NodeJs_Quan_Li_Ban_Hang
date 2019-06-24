@@ -1,0 +1,25 @@
+﻿trong folder node_modules còn thiếu file ejs, ejs-local, utf8.
+dư underfined và các table.// không dư
+trong views thiếu file index.ejs để chứa frame html và giống như trang chủ với code html chứa các trang php, frame chính, h.ảnh,...
+trong bin thiếu 1 file .dll
+chưa có folder dữ liệu chứa các file txt, json chứa dữ liệu.
+trong folder obj không biết dùng để làm gì
+trong folder public chưa có ảnh
+chưa có folder xử lí dữ liệu chứa các file xử lí .js khi bấm vào các lựa chọn trên trang chủ (dùng để kết nối với csdl trên mysql)
+
+file app.js cũng là file server.js chứa các xử lí cũng như lời gọi trên server, trang chính.
+thiếu các file readme, .njsproj, .njsproj.user không biết đẻ làm gì.
+
+var http = require('http');
+var express = require('express');
+var app = express();
+app.get('/:id', function (req, res) {
+    res.send("Hello world!" + req.params.id);
+    res.end();
+});
+var server = http.createServer(app);
+server.listen(8080);
+var t = require('DUA');
+t.insert('qsf', 'fhghf xiem', '10 000đ', '0.8', '0.7');
+t.update('tdg', 'fhgf xiem', '11 000đ', '0.8', '0.7');
+
