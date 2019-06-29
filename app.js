@@ -31,6 +31,7 @@ app.post("/dangky", async function (req, res) {
   console.log(tenkh);
   console.log(sdt);
   var kq = await csdl.Dang_ky(tenkh, email, sdt, matkhau);
+  res.render("index");
   //await XuatDuLieu(req, res);
 });
 
