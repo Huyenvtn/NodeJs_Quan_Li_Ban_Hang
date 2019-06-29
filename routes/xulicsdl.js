@@ -1,14 +1,12 @@
 
 module.exports.Dang_ky =
     async function (TENKH, EMAIL, SDT, MATKHAU) {
-    var mysql = require('mysql2/promise');
-    var pool = mysql.createPool({
+    var mysql = require('mysql');
+    var pool = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         database: 'quanlibandua',
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
+        password: ''
     });
     pool.connect(function(err) {
         if (err) throw err;

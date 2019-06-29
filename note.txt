@@ -22,4 +22,19 @@ server.listen(8080);
 var t = require('DUA');
 t.insert('qsf', 'fhghf xiem', '10 000đ', '0.8', '0.7');
 t.update('tdg', 'fhgf xiem', '11 000đ', '0.8', '0.7');
+//kết nối csdl
+var mysql = require("mysql");
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "quanlibandua"
+});
+con.connect(function(err){
+  if(err){
+    console.log('Error connecting to Db');
+    return;
+  }
+  console.log('Connection established');
+});
 
