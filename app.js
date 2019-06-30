@@ -16,7 +16,11 @@ app.get("/", async function (req, res) {
   if (q.dangky == 1) {       
       res.render("dangky");
   }
-  else  {
+  else if (q.sanpham == 1){
+    res.render("sanpham")
+    
+  }
+  else   {
       res.render("index");
   }   
 });

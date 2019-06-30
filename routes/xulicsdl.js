@@ -32,18 +32,18 @@ module.exports.PhanLoaiSP = async function () {
         connectionLimit: 10,
         queueLimit: 0
     });
-    var dsloaihoa = await pool.query('SELECT * from loaihoa ');
-    Bangloaihoa = dsloaihoa[0];
+    var dsloaisp = await pool.query('SELECT * from sanpham ');
+    Bangloaisp = dsloaisp[1];
     var kq = "";
-    for (i = 0; i < Bangloaihoa.length; i++) {
+    for (i = 0; i < Bangloaisp.length; i++) {
 
         kq += "<a href='/?maloai="
-            + Bangloaihoa[i].Maloai + "&&tenloai=" + Bangloaihoa[i].Tenloai + "'>" + Bangloaihoa[i].Tenloai + "</a><br>";
+            + Bangloaisp[i].Maloai + "'>" + Bangloaisp[i].Maloai + "</a><br>";
     }
 
     return kq;
 }
-/*
+
 module.exports.GioHangTong = function (giohang) {
     var tongtien = 0;
     var soluong = 0;
@@ -60,6 +60,7 @@ module.exports.GioHangTong = function (giohang) {
     return kq;
 
 };
+/*
 module.exports.HienThiGioHang = function (giohang) {
     var tongtien = 0;
     var kq = "<table width='90%' border='1' cellspacing='0' ";
@@ -81,41 +82,51 @@ module.exports.HienThiGioHang = function (giohang) {
     kq += "</table";
     return kq;
 
-};
-module.exports.HienThiHoa = async function (maloai,tenloai) {
+};*/
+
+module.exports.HienThiSP = async function (maloai) {
     var mysql = require('mysql2/promise');
     var pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
-        database: 'qlbh',
+        database: 'quanlibandua',
+        password: '',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
     });
-    var dshoa;
-    if (maloai == 0) {
+    var dssp;
+    /*if (maloai == 0) {
         dshoa = await pool.query('select  * from hoa order by mahoa desc limit 0,10');
         tenloai = "Danh Sách Hoa Mới";
     }
-        else
-        dshoa = await pool.query('select  * from hoa where maloai=' + maloai);
+        else*/
+        dssp = await pool.query('select  * from sanpham where maloai=' + maloai);
 
-    Banghoa = dshoa[0];
-    var kq = "<table> <caption>" + tenloai+" </caption > ";
+    Bangsp = dssp[0];
+    var kq = "<table> <caption>" + "Sản phẩm của Coconut Store"+" </caption > ";
 
-    for (i = 0; i < Banghoa.length; i++) {
+    for (i = 0; i < Bangsp.length; i++) {
 
         if (i % 5 == 0)
             kq += "<tr>";
-        kq += "<td><a href='/?mahoa=" + Banghoa[i].mahoa + "'> "
-      kq+=" <img src = 'hinh_anh/" + Banghoa[i].hinh + "' /></a > <br>";
-        kq += Banghoa[i].tenhoa + "<br><i>Giá bán :" + Banghoa[i].dongia + "</i>"
-        kq += "<br><a href='/?muahoa=" + Banghoa[i].mahoa + "&tenhoa=";
-        kq += Banghoa[i].tenhoa + "&dongia=" + Banghoa[i].dongia
-            kq+= "&maloai=" + maloai + "&tenloai=" + tenloai + "'>";
-        kq += "<img src='hinh_anh/gio_hang.jpg'></a></td>";
+        kq += "<td><a href='/?masp=" + Bangsp[i].masp + "'> "
+      kq+=" <img src = 'images/" + Bangsp[i].hinh + "' /></a > <br>";
+        kq += Bangsp[i].tensp + "<br><i>Giá bán :" + Bangsp[i].dongia + "</i>"
+        kq += "<br><a href='/?muahoa=" + Bangsp[i].masp + "&tensp=";
+        kq += Bangsp[i].tensp + "&dongia=" + Bangsp[i].dongia
+            kq+= "&maloai=" + maloai + "'>";
+        kq += "<a class="+"fa fa-lg fa-cart-plus"+ "></a>" +"</td>";
     
-
+/*<li class="one_quarter">
+			  <div class="card">
+				    <img src="../images/demo/gallery/Mong dua.jpg">
+					<img src="../../Demo/Capture.PNG">
+				    <p class="title">&nbsp;CEO & Founder</p>
+				    <div class="Gia">&nbsp;Giá:100.00 VND&nbsp;&nbsp;&nbsp;
+					<a id="Giohang" class="fa fa-lg fa-cart-plus"></a></div>
+				</div>
+			</li>*/
         if ((i + 1) % 5 == 0)
             kq += "</tr>";
 
@@ -124,84 +135,3 @@ module.exports.HienThiHoa = async function (maloai,tenloai) {
 
     return kq;
 };
-
-module.exports.HienThiChiTietHoa = async function (mahoa,tenhoa) {
-    var mysql = require('mysql2/promise');
-    var pool = mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        database: 'qlbh',
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    });
-    var dshoa;
-    if(mahoa!=0)
-        dshoa = await pool.query("select  * from hoa where mahoa=" + mahoa);
-    else
-        dshoa = await pool.query("select  * from hoa where tenhoa like'%" + tenhoa + "%' or mota like '%" + tenhoa +"'");
-
-    
-    Banghoa = dshoa[0];
-    var kq = "<table>";
-
-    for (i = 0; i < Banghoa.length; i++) {
-        if(i%2==0)
-            kq += "<tr>";
-        kq += "<td valign='center'> <img src = 'hinh_anh/" + Banghoa[i].hinh + "' /></td>";
-        kq += "<td><p  style='font - size: 14px; color: #303FDD'><b>"
-        kq += Banghoa[i].tenhoa + "</b ></p >";
-        kq += "<i>Giá bán :" + Banghoa[i].dongia + "</i><br>";
-        kq += "Thành phần chính :<br>" + Banghoa[i].mota + "</td>";
-        if((i+1)%2==0)
-         kq+="</tr > ";
-    }
-    kq += "</table>";
-
-    return kq;
-};
-module.exports.DangNhap = async function (tendn, matkhau) {
-    var mysql = require('mysql2/promise');
-    var pool = mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        database: 'qlbh',
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    });
-    var dskh;
-    dskh = await pool.query("select * from khachhang where TenDN='"
-        + tendn + "' and MatKhau='" + matkhau + "'");
-    var kq;
-    BangKh = dskh[0];
-    if (BangKh.length > 0) {
-        kq = BangKh[0];
-    }
-    else
-        kq = 0;
-    return kq;
-};
-module.exports.Dang_ky =
-    async function (tendn, matkhau, ho_ten, email, dia_chi, so_dt) {
-    var mysql = require('mysql2/promise');
-    var pool = mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        database: 'qlbh',
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    });
-        var kq;
-        var caulenh = "insert into khachhang(TenDN,MatKhau,HoTen,";
-        caulenh+="DiaChi, DienThoai, Email) "
-        caulenh += "values('" + tendn + "','" + matkhau + "','"
-            + ho_ten + "','" + dia_chi;
-        caulenh += "','" + so_dt + "','" + email + "')";
-        console.log(caulenh);
-       kq = await pool.query(caulenh);
-        console.log(kq);
-    return kq;
-};
-*/
