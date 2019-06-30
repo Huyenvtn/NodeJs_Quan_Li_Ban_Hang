@@ -17,11 +17,17 @@ app.get("/", async function (req, res) {
       res.render("dangky");
   }
   else if (q.sanpham == 1){
+    if (q.maloai == 1){
+      
+      res.render("sanpham")
+    }
     res.render("sanpham")
   }
-  else if(q.thanhtoan ==1){
+  else if(q.thanhtoan == 1){
     res.render("thanhtoan")
-  }else  {
+  }else if(q.dangnhap == 1){
+      res.render("dangnhap")
+  } else {
       res.render("index");
   }   
 });
@@ -31,7 +37,7 @@ app.get ("/sanpham", function (req, res){
 app.get ("/index", function (req, res){
   res.render("index");
 });
-app.post("/dangky", async function (req, res) {
+app.post("/dangkythanhcong", async function (req, res) {
   var tenkh = req.body.ten_kh;
   var email = req.body.email_kh;
   var sdt = req.body.sdt_kh;
@@ -39,7 +45,7 @@ app.post("/dangky", async function (req, res) {
   console.log(tenkh);
   console.log(sdt);
   var kq = await csdl.Dang_ky(tenkh, email, sdt, matkhau);
-  res.render("index");
+  res.render("sanpham");
 });
 var server = http.createServer(app);
 server.listen(8000);
