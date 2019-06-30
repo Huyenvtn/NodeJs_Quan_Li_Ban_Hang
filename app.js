@@ -9,19 +9,22 @@ const bodyParser = require('body-parser');
 var url = require('url');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-//app.set('port', (8080));
-// DataBase 
-//XuatDuLieu = async function (req, res){};
-  app.get("/", async function (req, res) {
-    var q = url.parse(req.url, true).query;
-    if (q.dangky == 1) {
-        
-      res.render("dangky");
 
-  }else  {
-      res.render("index");
+
+app.get("/", async function (req, res) {
+  var q = url.parse(req.url, true).query;
+  if (q.dangky == 1) {       
+      res.render("dangky");
   }
-    
+  else  {
+      res.render("index");
+  }   
+});
+app.get ("/sanpham", function (req, res){
+  res.render("sanpham");
+});
+app.get ("/index", function (req, res){
+  res.render("index");
 });
 app.post("/dangky", async function (req, res) {
   var tenkh = req.body.ten_kh;
@@ -32,11 +35,14 @@ app.post("/dangky", async function (req, res) {
   console.log(sdt);
   var kq = await csdl.Dang_ky(tenkh, email, sdt, matkhau);
   res.render("index");
-  //await XuatDuLieu(req, res);
 });
-
 var server = http.createServer(app);
-
 server.listen(8000);
 
 //module.exports = app;
+
+//app.set('port', (8080));
+// DataBase 
+//XuatDuLieu = async function (req, res){};
+
+  //await XuatDuLieu(req, res);

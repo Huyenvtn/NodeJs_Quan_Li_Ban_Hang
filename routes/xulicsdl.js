@@ -1,17 +1,15 @@
-
 module.exports.Dang_ky =
     async function (TENKH, EMAIL, SDT, MATKHAU) {
-    var mysql = require('mysql');
-    var pool = mysql.createConnection({
+    var mysql = require('mysql2/promise');
+    var conn = mysql.createPool({
         host: 'localhost',
         user: 'root',
         database: 'quanlibandua',
-        password: ''
+        password: '',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0
     });
-    pool.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!!!")
-      });
         var kq;
         var caulenh = "insert into khachhang(TENKH, EMAIL,";
         caulenh+="SDT, MATKHAU) "
@@ -19,14 +17,13 @@ module.exports.Dang_ky =
             + EMAIL;
         caulenh += "','" + SDT + "','" + MATKHAU + "')";
         console.log(caulenh);
-       kq = await pool.query(caulenh);
+       kq = await conn.query(caulenh);
         console.log(kq);
     return kq;
-    pool.end();
 };
-/*
-module.exports.HienThiLoaiHoa = async function () {
-    var mysql = require('mysql');
+
+module.exports.PhanLoaiSP = async function () {
+    var mysql = require('mysql2/promise');
     var pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
@@ -46,6 +43,7 @@ module.exports.HienThiLoaiHoa = async function () {
 
     return kq;
 }
+/*
 module.exports.GioHangTong = function (giohang) {
     var tongtien = 0;
     var soluong = 0;
