@@ -17,22 +17,23 @@ app.get("/", async function (req, res) {
       res.render("dangky");
   }
   else if (q.sanpham == 1){
-    if (q.maloai == 1){
-      
-      res.render("sanpham")
-    }
-    res.render("sanpham")
+    if (q.maloai != undefined){
+        var maloai = q.maloai;
+        dssp = await csdl.HienThiSP(maloai);
+      res.render("sanpham", {headline: 'Đăng nhập', dssp:dssp})
+    }else
+    res.render("sanpham", {headline: 'Đăng nhập', dssp: 0})
   }
-  else if(q.thanhtoan == 1){
+  else if (q.thanhtoan == 1){
     res.render("thanhtoan")
-  }else if(q.dangnhap == 1){
+  } else if(q.dangnhap == 1){
       res.render("dangnhap")
   } else {
       res.render("index");
   }   
 });
 app.get ("/sanpham", function (req, res){
-  res.render("sanpham");
+  res.render("sanpham", {headline: 'Đăng nhập', dssp:0});
 });
 app.get ("/index", function (req, res){
   res.render("index");
@@ -45,7 +46,7 @@ app.post("/dangkythanhcong", async function (req, res) {
   console.log(tenkh);
   console.log(sdt);
   var kq = await csdl.Dang_ky(tenkh, email, sdt, matkhau);
-  res.render("sanpham");
+  res.render("sanpham", {headline: 'Chào '+ tenkh, dssp: 0});
 });
 var server = http.createServer(app);
 server.listen(8000);

@@ -103,35 +103,29 @@ module.exports.HienThiSP = async function (maloai) {
         else*/
         dssp = await pool.query('select  * from sanpham where maloai=' + maloai);
 
-    Bangsp = dssp[0];
-    var kq = "<table> <caption>" + "Sản phẩm của Coconut Store"+" </caption > ";
+    var Bangsp = dssp[0];
+    //var kq = "<table> <caption>" + "Sản phẩm của Coconut Store"+" </caption > ";
 
     for (i = 0; i < Bangsp.length; i++) {
-
-        if (i % 5 == 0)
-            kq += "<tr>";
-        kq += "<td><a href='/?masp=" + Bangsp[i].masp + "'> "
-      kq+=" <img src = 'images/" + Bangsp[i].hinh + "' /></a > <br>";
-        kq += Bangsp[i].tensp + "<br><i>Giá bán :" + Bangsp[i].dongia + "</i>"
-        kq += "<br><a href='/?muahoa=" + Bangsp[i].masp + "&tensp=";
-        kq += Bangsp[i].tensp + "&dongia=" + Bangsp[i].dongia
-            kq+= "&maloai=" + maloai + "'>";
-        kq += "<a class="+"fa fa-lg fa-cart-plus"+ "></a>" +"</td>";
-    
-/*<li class="one_quarter">
-			  <div class="card">
-				    <img src="../images/demo/gallery/Mong dua.jpg">
-					<img src="../../Demo/Capture.PNG">
-				    <p class="title">&nbsp;CEO & Founder</p>
-				    <div class="Gia">&nbsp;Giá:100.00 VND&nbsp;&nbsp;&nbsp;
-					<a id="Giohang" class="fa fa-lg fa-cart-plus"></a></div>
-				</div>
-			</li>*/
+ if (i % 5 != 0)
+     /*       kq += "<tr>";
+        kq += "<td><a href='/?masp=" + Bangsp[i].masp + "'> ";
+      kq+=" <img src = 'images/" + Bangsp[i].hinh + ".jpg"+"' /></a > <br>";
+        kq += Bangsp[i].tensp + "<br><i>Giá bán :" + Bangsp[i].dongia + "</i>";
+        kq += "<br><i>Tên sả phẩm :" + Bangsp[i].tensp + "</i></td>";
+    */
+   var kq;
+kq+= "<li class='one_quarter'>";
+kq+= "<div class='card'>"
+kq+= "<img src='images/" + Bangsp[i].hinh + ".jpg'>";
+kq+= "<p class='title'>&nbsp;"+ Bangsp[i].tensp+"</p>"
+kq+= "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].dongia + " VND&nbsp;&nbsp;&nbsp";
+kq+= "<a id='Giohang' class='fa fa-lg fa-cart-plus'></a></div>"
+kq+= "</div>";
+kq+= "</li>";
         if ((i + 1) % 5 == 0)
-            kq += "</tr>";
-
+         kq += "<br>";
     }
-    kq += "</table>";
-
     return kq;
+    console.log(kq);
 };
