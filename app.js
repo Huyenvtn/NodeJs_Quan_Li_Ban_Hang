@@ -18,9 +18,10 @@ app.get("/", async function (req, res) {
   }
   else if (q.sanpham == 1){
     res.render("sanpham")
-    dsh = await csdl.HienThiSP(1);
   }
-  else   {
+  else if(q.thanhtoan ==1){
+    res.render("thanhtoan")
+  }else  {
       res.render("index");
   }   
 });
