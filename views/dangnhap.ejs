@@ -23,9 +23,9 @@
 	<h1></h1>
 	<div class="w3layoutscontaineragileits">
 	<h2 style="color: #B97D2D">ĐĂNG NHẬP</h2>
-		<form action="http://localhost:8000/?sanpham=1" method="get">
-			<input type="email" Name="Username" placeholder="Tên tài khoản" required="">
-			<input type="password" Name="Password" placeholder="Mật khẩu" required="">
+		<form action="http://localhost:8000/dangnhapthanhcong" method="POST">
+			<input type="email" Name="email" placeholder="Email" required="">
+			<input type="password" Name="matkhau" placeholder="Mật khẩu" required="">
 			<ul class="agileinfotickwthree">
 				<li> 
 					<input type="checkbox" checked="" id="brand1" value="">
@@ -60,11 +60,8 @@
 			midClick: true,
 			removalDelay: 300,
 			mainClass: 'my-mfp-zoom-in'
-		});
-																		
+		});															
 		});
 	</script>
-
-
 </body>
 </html>

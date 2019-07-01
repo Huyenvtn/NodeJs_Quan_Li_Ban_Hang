@@ -29,13 +29,28 @@ app.get("/", async function (req, res) {
     res.render("thanhtoan")
   } else if(q.dangnhap == 1){
       res.render("dangnhap")
-  } else {
+  } else if (q.baiviet == 1){
+    res.render("camnang", {headline: 'Đăng nhập'})
+  }else
+    {
       res.render("index");
   }   
 });
 app.get ("/index", function (req, res){
   res.render("index");
 });
+
+app.post("/dangnhapthanhcong", async function (req, res) {
+  var emaildn = req.body.email;
+  var matkhau = req.body.matkhau;
+  var kq = await csdl.DangNhap(email, matkhau);
+  if (kq == 0) 
+      req.session.kh = "";
+  else
+      req.session.kh = kq;
+  await XuatDuLieu(req, res);
+});
+
 app.post("/dangkythanhcong", async function (req, res) {
   var tenkh = req.body.ten_kh;
   var email = req.body.email_kh;

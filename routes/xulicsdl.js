@@ -22,6 +22,29 @@ module.exports.Dang_ky =
     return kq;
 };
 
+module.exports.DangNhap = async function (email, matkhau) {
+    var mysql = require('mysql2/promise');
+    var pool = mysql.createPool({
+        host: 'localhost',
+        user: 'root',
+        database: 'quanlibandua',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0
+    });
+    var dskh;
+    dskh = await pool.query("select * from khachhang where EMAIL='"
+        + email + "' and MATKHAU='" + matkhau + "'");
+    var kq;
+    BangKh = dskh[0];
+    if (BangKh.length > 0) {
+        kq = BangKh[0];
+    }
+    else
+        kq = 0;
+    return kq;
+};
+
 module.exports.PhanLoaiSP = async function () {
     var mysql = require('mysql2/promise');
     var pool = mysql.createPool({
@@ -109,13 +132,50 @@ module.exports.HienThiSP = async function (maloai) {
             kq += "<li class='one_quarter'>"
             kq += "<div class='card'>";
             kq += "<img width= '200px' height='200px' src='images/" + Bangsp[i].HINH + "'/>"
-            kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p>";
+            kq += "<a href='/?sanpham=1&masp=" + Bangsp[i].MASP + "'> ";
+            kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p></a>";
             kq += "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
-            kq += "<a id='Giohang' class='fa fa-lg fa-cart-plus'></a></div>";
+            kq += "<a href='/?mua=1&masp=" + Bangsp[i].MASP +"'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
             kq += "</div>"
             kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
         if ((i + 1) % 6 == 0)
             kq += "</ul>";
     }
+    return kq;
+};
+
+module.exports.ChiTietSP = async function (masp,tensp) {
+    var mysql = require('mysql2/promise');
+    var pool = mysql.createPool({
+        host: 'localhost',
+        user: 'root',
+        database: 'quanlibandua',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0
+    });
+    var dssp;
+    if(masp != 0)
+        dssp = await pool.query("select  * from sanpham where masp=" + masp);
+    else
+        dssp = await pool.query("select  * from sanpham where tensp like'%" + tensp + "%' or mota like '%" + tensp +"'");
+
+    
+    Bangsp = dssp[0];
+    var kq = "<table>";
+
+    for (i = 0; i < Bangsp.length; i++) {
+        if(i%2==0)
+            kq += "<tr>";
+        kq += "<td valign='center'> <img src = 'images/" + Bangsp[i].HINH + "' /></td>";
+        kq += "<td><p  style='font - size: 14px; color: #303FDD'><b>"
+        kq += Bangsp[i].TENSP + "</b ></p >";
+        kq += "<i>Giá bán :" + Bangsp[i].DONGIA + "</i><br>";
+        kq += "Thành phần chính :<br>" + Bangsp[i].MOTA + "</td>";
+        if((i+1)%2==0)
+         kq+="</tr > ";
+    }
+    kq += "</table>";
+
     return kq;
 };
