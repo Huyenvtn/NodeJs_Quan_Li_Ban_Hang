@@ -10,7 +10,6 @@ var url = require('url');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 
-
 app.get("/", async function (req, res) {
   var q = url.parse(req.url, true).query;
   if (q.dangky == 1) {       
@@ -18,11 +17,13 @@ app.get("/", async function (req, res) {
   }
   else if (q.sanpham == 1){
     if (q.maloai != undefined){
-        var maloai = q.maloai;
+      var  maloai = q.maloai;
         dssp = await csdl.HienThiSP(maloai);
       res.render("sanpham", {headline: 'Đăng nhập', dssp:dssp})
-    }else
-    res.render("sanpham", {headline: 'Đăng nhập', dssp: 0})
+    }else{
+     var maloai = 0;
+      dssp = await csdl.HienThiSP(maloai);  
+      res.render("sanpham", {headline: 'Đăng nhập', dssp:dssp})}
   }
   else if (q.thanhtoan == 1){
     res.render("thanhtoan")
@@ -31,9 +32,6 @@ app.get("/", async function (req, res) {
   } else {
       res.render("index");
   }   
-});
-app.get ("/sanpham", function (req, res){
-  res.render("sanpham", {headline: 'Đăng nhập', dssp:0});
 });
 app.get ("/index", function (req, res){
   res.render("index");
@@ -46,7 +44,9 @@ app.post("/dangkythanhcong", async function (req, res) {
   console.log(tenkh);
   console.log(sdt);
   var kq = await csdl.Dang_ky(tenkh, email, sdt, matkhau);
-  res.render("sanpham", {headline: 'Chào '+ tenkh, dssp: 0});
+  var maloai = 0;
+  var dssp = await csdl.HienThiSP(maloai);
+  res.render("sanpham", {headline: 'Chào '+ tenkh, dssp: dssp});
 });
 var server = http.createServer(app);
 server.listen(8000);

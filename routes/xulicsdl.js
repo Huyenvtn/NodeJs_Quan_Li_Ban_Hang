@@ -96,36 +96,26 @@ module.exports.HienThiSP = async function (maloai) {
         queueLimit: 0
     });
     var dssp;
-    /*if (maloai == 0) {
-        dshoa = await pool.query('select  * from hoa order by mahoa desc limit 0,10');
-        tenloai = "Danh Sách Hoa Mới";
-    }
-        else*/
+    if (maloai == 0){
+        dssp = await pool.query('select  * from sanpham');
+    }   
+        else
         dssp = await pool.query('select  * from sanpham where maloai=' + maloai);
-
-    var Bangsp = dssp[0];
-    //var kq = "<table> <caption>" + "Sản phẩm của Coconut Store"+" </caption > ";
-
+    Bangsp = dssp[0];
+    var kq;
     for (i = 0; i < Bangsp.length; i++) {
- if (i % 5 != 0)
-     /*       kq += "<tr>";
-        kq += "<td><a href='/?masp=" + Bangsp[i].masp + "'> ";
-      kq+=" <img src = 'images/" + Bangsp[i].hinh + ".jpg"+"' /></a > <br>";
-        kq += Bangsp[i].tensp + "<br><i>Giá bán :" + Bangsp[i].dongia + "</i>";
-        kq += "<br><i>Tên sả phẩm :" + Bangsp[i].tensp + "</i></td>";
-    */
-   var kq;
-kq+= "<li class='one_quarter'>";
-kq+= "<div class='card'>"
-kq+= "<img src='images/" + Bangsp[i].hinh + ".jpg'>";
-kq+= "<p class='title'>&nbsp;"+ Bangsp[i].tensp+"</p>"
-kq+= "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].dongia + " VND&nbsp;&nbsp;&nbsp";
-kq+= "<a id='Giohang' class='fa fa-lg fa-cart-plus'></a></div>"
-kq+= "</div>";
-kq+= "</li>";
-        if ((i + 1) % 5 == 0)
-         kq += "<br>";
+        if (i % 6 == 0)
+        kq += "<ul class='nospace clear'>";
+            kq += "<li class='one_quarter'>"
+            kq += "<div class='card'>";
+            kq += "<img width= '200px' height='200px' src='images/" + Bangsp[i].HINH + "'/>"
+            kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p>";
+            kq += "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
+            kq += "<a id='Giohang' class='fa fa-lg fa-cart-plus'></a></div>";
+            kq += "</div>"
+            kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
+        if ((i + 1) % 6 == 0)
+            kq += "</ul>";
     }
     return kq;
-    console.log(kq);
 };
