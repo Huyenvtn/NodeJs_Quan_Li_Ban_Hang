@@ -20,7 +20,12 @@ app.get("/", async function (req, res) {
       var  maloai = q.maloai;
         dssp = await csdl.HienThiSP(maloai);
       res.render("sanpham", {headline: 'Đăng nhập', dssp:dssp})
-    }else{
+    }else
+      if (q.masp != undefined){
+        var masp = q.masp;
+        sp = await csdl.ChiTietSP(masp);
+        res.render("sanpham",{headline:'Đăng nhập', dssp:sp})
+      } else{
      var maloai = 0;
       dssp = await csdl.HienThiSP(maloai);  
       res.render("sanpham", {headline: 'Đăng nhập', dssp:dssp})}

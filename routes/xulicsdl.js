@@ -144,7 +144,7 @@ module.exports.HienThiSP = async function (maloai) {
     return kq;
 };
 
-module.exports.ChiTietSP = async function (masp,tensp) {
+module.exports.ChiTietSP = async function (masp) {
     var mysql = require('mysql2/promise');
     var pool = mysql.createPool({
         host: 'localhost',
@@ -154,28 +154,30 @@ module.exports.ChiTietSP = async function (masp,tensp) {
         connectionLimit: 10,
         queueLimit: 0
     });
-    var dssp;
-    if(masp != 0)
-        dssp = await pool.query("select  * from sanpham where masp=" + masp);
-    else
-        dssp = await pool.query("select  * from sanpham where tensp like'%" + tensp + "%' or mota like '%" + tensp +"'");
-
-    
-    Bangsp = dssp[0];
-    var kq = "<table>";
-
-    for (i = 0; i < Bangsp.length; i++) {
-        if(i%2==0)
-            kq += "<tr>";
-        kq += "<td valign='center'> <img src = 'images/" + Bangsp[i].HINH + "' /></td>";
+    var sp;
+    var kq;
+    if(masp != 0){
+        sp = await pool.query('select  * from sanpham where masp=' + masp);
+        var spht = sp[0];
+        kq += "<table>"
+        kq += "<tr>"
+        kq += "<td valign='center'> <img src = 'images/" + spht[0].HINH + "' /></td>";
         kq += "<td><p  style='font - size: 14px; color: #303FDD'><b>"
-        kq += Bangsp[i].TENSP + "</b ></p >";
-        kq += "<i>Giá bán :" + Bangsp[i].DONGIA + "</i><br>";
-        kq += "Thành phần chính :<br>" + Bangsp[i].MOTA + "</td>";
-        if((i+1)%2==0)
-         kq+="</tr > ";
+        kq += spht[0].TENSP + "</b ></p >";
+        kq += "<i><strong>Giá bán : " + spht[0].DONGIA + " </strong> VND</i><br>";
+           
+        kq += "<strong>Thành phần chính : </strong><br>" + spht[0].MOTA ;
+        kq += "<p><strong>Số lượng: </strong></p>"
+        kq += "<div class='product-quantity'>";
+        kq +=  "<input type='number' value='1' min='1'></div>";
+        kq += "<p><a href='#' class='buy-now btn btn-sm height-auto px-4 py-3 btn-primary'><i class='fa fa-lg fa-cart-plus'></i></a></p>";   
+        kq += "<br></td>";
+        kq+="</tr > ";
+        kq += "</table>";
     }
-    kq += "</table>";
-
+    else
+        {
+            kq += "<h2>Không tìm thấy !</h2>";
+        }
     return kq;
 };
