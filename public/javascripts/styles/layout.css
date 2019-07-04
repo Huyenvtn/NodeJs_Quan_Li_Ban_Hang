@@ -59,8 +59,10 @@ File: Layout CSS
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   height: 222px;
 }
-.title{
+.card .title1{
 	color: #B97D2D;
+	font-size:18px;
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
 
 }
 .button{
@@ -72,16 +74,135 @@ File: Layout CSS
 }
 .Gia{
 	color: black;
+	fonr-size:0px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 }
 #Giohang{
 	color: #B97D2D;
 	text-align: right;
 	
 }
-/*-------------------------/image---------------------------------------*/
+/*-------------------------/sideba---------------------------------------*/
+.row {
+  margin: 10px -16px;
+}
+
+.row,
+.row > .column {
+  padding: 9px;
+}
+.content_row {
+  background-color:#CBC6C6;
+  padding:10px 10px 25px 10px;
+}
+
+.content_row .h4{
+	font-size:.9rem;
+	margin:0px;
+	font-family:Constantia, 'Lucida Bright', 'DejaVu Serif', Georgia, 'serif';
+}
+.content_row .h4 .color{
+    color:#1E1C1C;
+    text-decoration: none;
+
+}
+.content_row .h4 .color:hover{
+    color:#B97D2D;
+    text-decoration: none;
+
+}
+.box{
+	float:left;
+	margin: 0 49px 0 0px;
+	color:  #B97D2D;
+	font-family:Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+}
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  background-color:#898989;
+}
+
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btns {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color:while;
+  cursor: pointer;
+}
+
+.btns:hover {
+  color:#B97D2D; ;
+}
+
+.sdb_holder .btns.act{
+  color:#B97D2D;
+}
 
 
 
+/*-------------------------Sort Header ----------------------------------------*/
+/*thanh xắp xếp tăng dần giảm dần--*/
+.background1{
+	z-index:99999;
+	background-image: url("../../../Demo/5.jpg");
+	background-repeat: no-repeat;
+	width: auto;
+	height: inherit;
+	background-attachment: scroll;
+	background-color: #FFFFFF;
+	background-size: cover;
+	
+}
+.btn_sorst {
+  background-color: #B97D2D;
+  color: white;
+  padding: 0 16px 0 16px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  height: 40px;
+  
+  
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color:#B97D2D;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
@@ -171,11 +292,10 @@ File: Layout CSS
 
 /* Sidebar */
 .container .sidebar{}
-
 .sidebar .sdb_holder{margin-bottom:50px;}
 .sidebar .sdb_holder:last-child{margin-bottom:0;}
-
-
+.sidebar .sdb_holder .active:first-child{ color:#B97D2D;
+}
 /* Footer
 --------------------------------------------------------------------------------------------------------------- */
 #footer{padding:80px 0; text-align:center;}
@@ -316,7 +436,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#B97D2D;}
 .overlay{color:#FFFFFF; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#B97D2D; border-color:#B97D2D;}
+.btn,.btn_sorst,.btn.inverse:hover{color:#FFFFFF; background-color:#B97D2D; border-color:#B97D2D;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 
@@ -326,7 +446,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#B97D2D;}
 .row2, .row2 a{}
 .row3{color:#474747; background-color:#FFFFFF;}
 .row4{color:#474747; background-color:#F7F7F7;}
-
+.row5{color:#474747;background-image: url("../../../Demo/2.PNG")}
 
 /* Top Bar */
 #topbar ul li{border-color:rgba(255,255,255,.2);}
@@ -426,12 +546,16 @@ table a, #comments a{background-color:inherit;}
 	#footer{}
 }
 
+.bk_g2{
+	background-image: url("../../images/demo/backgrounds/background_lienhe2.jpg");
+	height:380px;
+}
 
 @media screen and (max-width:750px){
 	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
 	.fl_left, .fl_right{display:block; float:none;}
-	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
-
+	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter,.three_quater_img{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
+	
 	#topbar{padding-top:15px; text-align:center;}
 	#topbar ul{margin:0 0 15px 0; line-height:normal;}
 
@@ -465,3 +589,5 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
 }
+/*
+------------------------------------------------------------------------------------------------------------------*/
