@@ -14,7 +14,7 @@ app.get("/", async function (req, res) {
   var q = url.parse(req.url, true).query;
   if (q.dangky == 1) {       
       res.render("dangky");
-  }
+  }else if (q.lienhe ==1){res.render("lienhe");}
   else if (q.sanpham == 1){
     if (q.maloai != undefined){
       var  maloai = q.maloai;

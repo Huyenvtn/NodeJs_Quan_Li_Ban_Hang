@@ -8,7 +8,7 @@
 <title>Coconut Store | Liên hệ</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="javascripts/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <style type="text/css">
 /* DEMO ONLY */
 .container .demo{text-align:center;}
@@ -19,67 +19,71 @@
 /* DEMO ONLY */
 </style>
 </head>
-<body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row0">
-  <div id="topbar" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <div class="fl_left">
-      <ul class="nospace">
-        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
-      </ul>
+<body id="top" >
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div class="fl_left">
+        <ul class="nospace">
+          <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+          <li><i class="fa fa-envelope-o"></i> coconutstore@gmail.com</li>
+        </ul>
+      </div>
+      <div class="fl_right">
+        <ul class="nospace">
+          <li><a href="http://localhost:8000/?index=1"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="http://localhost:8000/?dangnhap=1">Đăng nhập</a></li>
+          <li><a href="#">Trợ giúp?</a></li>
+        </ul>
+      </div>
+      <!-- ################################################################################################ -->
     </div>
-    <div class="fl_right">
-      <ul class="nospace">
-        <li><a href="#"><i class="fa fa-lg fa-user"></i></a></li>
-        <li><a href="#">Đăng nhập</a></li>
-        <li><a href="#">Đăng ký</a></li>
-        <li><a href="#">Giúp đỡ</a></li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
   </div>
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a href="http://localhost:8000/?index=1">Coconut Store</a></h1>
+        <p>Sản phẩm nguyên chất từ dừa</p>
+      </div>
+      <!-- ################################################################################################ -->
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <form action="http://localhost:8000/?sanpham=1" method="GET">
+          <table><tr><td>
+          <li><div class="form-sub-w3ls">
+              <input placeholder="Bạn cần tìm ?"  type="text" id="sp" required="">
+            </div></li></td>
+            <td>
+          <li><div class="submit-w3l">
+              <input type="submit" value="Tìm" onclick="Timkiemsp();">
+            </div></li>
+          </td>
+          </tr>
+          </table>
+          </form>
+          <li><a href="http://localhost:8000/?thanhtoan=1"><em class="fa fa-lg fa-shopping-cart"></em></a></li>
+          <li><a href="http://localhost:8000/?index=1">Trang chủ</a></li>
+        <li class="active"><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
+          <li><a href="http://localhost:8000/?baiviet=1">Cẩm nang</a></li>
+          <li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
 </div>
 <!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
-  <header id="header" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1><a href="../index.html">Coconut Store</a></h1>
-      <p>Sản phẩm nguyên chất từ dừa</p>
-    </div>
-    <!-- ################################################################################################ -->
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li><a href="../index.html">Trang chủ</a></li>
-        <li><a href="#">Sản phẩm</a></li>
-        <li><a href="#">Bài viết</a></li>
-		<li class="active"><a class="drop" href="#">Liên hệ</a></li>
-      </ul>
-    </nav>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
-<!-- ################################################################################################ -->
-<div class="wrapper bgded bk_g1" style="background-image: url('public\images\backgrounds\02.png')">
+<div class="wrapper bgded bk_g1" style="background-image:url('images/backgrounds/Backgroundsp.jpg')">
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul>
-      <li><a href="#">Trang chủ</a></li>
-		<li><a href="#">Liên hệ</a></li>
+      <li><a href="http://localhost:8000/?index=1">Trang chủ</a></li>
+		<li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </div>
 </div>
-<div class="wrapper bgded bk_g2">
+<div class="wrapper bgded bk_g2" style="background-image: url('images/backgrounds/background_lienhe2.jpg')">
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
@@ -88,21 +92,16 @@
     <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
-    <!-- ################################################################################################ -->
     <div class="content"> 
       <!-- ################################################################################################ -->
       <h2>Liên hệ</h2>
       <!-- ################################################################################################ -->
       <div class="group btmspace-50 demo">
         <div class="one_half first">
-		<img src="/public/images/map.PNG"/> 
+		<img src="images/map.PNG"/> 
 			<!--<div id="googleMap" style="width: 400px; height: 300px;">Google Map</div>-->
 		</div>
         <div class="one_half" style="background-color:white">
@@ -131,31 +130,24 @@
           </form> 
 	   </div>
       </div>
-      <!-- ################################################################################################ -->
-    
-      <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <h3 class="heading">Corklow</h3>
+    <h3 class="heading">Coconut Store</h3>
     <ul class="nospace inline pushright uppercase">
-      <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Register</a></li>
+      <li><a href="http://localhost:8000/?index=1"><i class="fa fa-lg fa-home"></i></a></li>
+      <li><a href="http://localhost:8000/?index=1">Về chúng tôi</a></li>
+      <li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
+      <li><a href="http://localhost:8000/?dangnhap=1">Đăng nhập</a></li>
     </ul>
     <ul class="faico clear">
-      <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a class="faicon-facebook" href="https://www.facebook.com/sanphamtuduaantoan/"><i class="fa fa-facebook"></i></a></li>
       <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
       <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
       <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
@@ -163,21 +155,18 @@
       <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
     </ul>
     <div id="copyright">
-      <p>Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-      <p class="font-xs">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+      <p>Copyright &copy; 2019 - All Rights Reserved - <a href="http://localhost:8000/?index=1">Coconut Store</a></p>
+      <p class="font-xs">Template by <a target="_blank" href="#">NHY</a></p>
     </div>
     <!-- ################################################################################################ -->
   </footer>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="javascripts/scripts/jquery.min.js"></script>
+<script src="javascripts/scripts/jquery.backtotop.js"></script>
+<script src="javascripts/scripts/jquery.mobilemenu.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-<script type="text/javascript">
-
+<script type="text/javascript"></script>
+</body>
+</html>
