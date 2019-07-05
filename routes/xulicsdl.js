@@ -122,25 +122,27 @@ module.exports.HienThiSP = async function (maloai) {
     if (maloai == 0){
         dssp = await pool.query('select  * from sanpham');
     }   
-        else
-        dssp = await pool.query('select  * from sanpham where maloai=' + maloai);
+    else{
+    dssp = await pool.query('select  * from sanpham where maloai=' + maloai);
+    };
     Bangsp = dssp[0];
-    var kq;
+    var kq='';
     for (i = 0; i < Bangsp.length; i++) {
         if (i % 6 == 0)
-        kq += "<ul class='nospace clear'>";
-            kq += "<li class='one_quarter'>"
+            kq += "<ul class='nospace clear'>";
+            kq += "<li class='one_quarter'>";
             kq += "<div class='card'>";
             kq += "<img width= '200px' height='200px' src='images/" + Bangsp[i].HINH + "'/>"
             kq += "<a href='/?sanpham=1&masp=" + Bangsp[i].MASP + "'> ";
             kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p></a>";
             kq += "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
             kq += "<a href='/?mua=1&masp=" + Bangsp[i].MASP +"'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
-            kq += "</div>"
+            kq += "</div>";
             kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
+        
         if ((i + 1) % 6 == 0)
             kq += "</ul>";
-    }
+        }
     return kq;
 };
 
@@ -155,14 +157,14 @@ module.exports.ChiTietSP = async function (masp) {
         queueLimit: 0
     });
     var sp;
-    var kq;
+    var kq='';
     if(masp != 0){
         sp = await pool.query('select  * from sanpham where masp=' + masp);
         var spht = sp[0];
         kq += "<table>"
         kq += "<tr>"
-        kq += "<td valign='center'> <img src = 'images/" + spht[0].HINH + "' /></td>";
-        kq += "<td><p  style='font - size: 14px; color: #303FDD'><b>"
+        kq += "<td width='250px' height='250px'> <img  width='250px' src = 'images/" + spht[0].HINH + "' /></td>";
+        kq += "<td><p style='font - size: 14px; color: #303FDD'><b>"
         kq += spht[0].TENSP + "</b ></p >";
         kq += "<i><strong>Giá bán : " + spht[0].DONGIA + " </strong> VND</i><br>";
            
