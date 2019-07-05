@@ -13,13 +13,10 @@ module.exports.Dang_ky =
         var kq;
         var caulenh = "insert into khachhang(TENKH, EMAIL,";
         caulenh+="SDT, MATKHAU) "
-        caulenh += "values('"+ TENKH + "','"
-            + EMAIL;
+        caulenh += "values('"+ TENKH + "','" + EMAIL;
         caulenh += "','" + SDT + "','" + MATKHAU + "')";
-        console.log(caulenh);
-       kq = await conn.query(caulenh);
-        console.log(kq);
-    return kq;
+        kq = await conn.query(caulenh);
+        return kq;
 };
 
 module.exports.DangNhap = async function (email, matkhau) {
@@ -32,11 +29,11 @@ module.exports.DangNhap = async function (email, matkhau) {
         connectionLimit: 10,
         queueLimit: 0
     });
-    var dskh;
-    dskh = await pool.query("select * from khachhang where EMAIL='"
+    var kh;
+    kh = await pool.query("select * from khachhang where EMAIL='"
         + email + "' and MATKHAU='" + matkhau + "'");
     var kq;
-    BangKh = dskh[0];
+    BangKh = kh[0];
     if (BangKh.length > 0) {
         kq = BangKh[0];
     }
@@ -45,67 +42,76 @@ module.exports.DangNhap = async function (email, matkhau) {
     return kq;
 };
 
-module.exports.PhanLoaiSP = async function () {
+module.exports.PhanLoaiGiaSP = async function (khoanggia) {
     var mysql = require('mysql2/promise');
     var pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
         database: 'quanlibandua',
+        password: '',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
     });
-    var dsloaisp = await pool.query('SELECT * from sanpham ');
-    Bangloaisp = dsloaisp[1];
-    var kq = "";
+    var dssptheogia;
+    if (khoanggia == 0){
+        dssptheogia = await pool.query('select  * from sanpham');
+    }   
+        else
+        dssptheogia = await pool.query("select  * from sanpham where KHOANGGIA=" + khoanggia);
+    Bangloaisp = dssptheogia[0];
+    var kq;
     for (i = 0; i < Bangloaisp.length; i++) {
-
-        kq += "<a href='/?maloai="
-            + Bangloaisp[i].Maloai + "'>" + Bangloaisp[i].Maloai + "</a><br>";
+        if (i % 6 == 0)
+            kq += "<ul class='nospace clear'>";
+            kq += "<li class='one_quarter'>"
+            kq += "<div class='card'>";
+            kq += "<img width= '200px' height='200px' src='images/" + Bangloaisp[i].HINH + "'/>"
+            kq += "<a href='/?sanpham=1&masp=" + Bangloaisp[i].MASP + "'> ";
+            kq += "<p class='title'>&nbsp;"+ Bangloaisp[i].TENSP +"</p></a>";
+            kq += "<div class='Gia'>&nbsp;Giá:" + Bangloaisp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
+            kq += "<a href='/?muasp=" + Bangloaisp[i].MASP + "&tensp=";
+            kq += Bangloaisp[i].TENSP + "&dongia=" + Bangloaisp[i].DONGIA + "&hinh=" + Bangloaisp[i].HINH + "'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
+            kq += "</div>"
+            kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
+            if ((i + 1) % 6 == 0)
+            kq += "</ul>";
     }
-
     return kq;
-}
-
-module.exports.GioHangTong = function (giohang) {
-    var tongtien = 0;
-    var soluong = 0;
-    var kq=""
-    for (i = 0; i < giohang.length; i++) {
-
-        soluong += giohang[i].soluong*1;
-        tongtien += giohang[i].soluong * giohang[i].dongia;
-
-    }
-    kq += "<br>Số lượng : " + soluong;
-    kq += "<br>Tổng tiền :" + tongtien;
-    kq += "<br><a href='/?ttgh=1'>Thông tin giỏ hàng</a>";
-    return kq;
-
 };
-/*
+
 module.exports.HienThiGioHang = function (giohang) {
     var tongtien = 0;
-    var kq = "<table width='90%' border='1' cellspacing='0' ";
-    kq+="cellpadding = '0' > ";
-    kq += "<tr><td width='5%'>STT</td><td width='30%'>Tên hoa</td>";
-    kq += "<td width='10%'>SL</td> <td width='15%'>Giá</td>";
-    kq+="<td width='15%'>Thành tiền</td><td width='10%'>Xóa</td><td>Sửa</td></tr > ";
+    var kq;
     for (i = 0; i < giohang.length; i++) {
-        kq += "<tr><td>" + (i + 1) + "</td><td>" + giohang[i].tenhoa
-            + "</td>";
-        kq += "<td><input type='number' id='txtsl" + giohang[i].mahoa+"' value='" + giohang[i].soluong +"'/></td><td>" + giohang[i].dongia + "</td>";
-        kq += "<td>" + giohang[i].soluong * giohang[i].dongia
-            + "</td>";
-        kq += "<td><a href='#' onClick='xoahoa(" + giohang[i].mahoa+")'>Xóa</a></td>" ;
-        kq += "<td><a href='#' onClick='suahoa(" + giohang[i].mahoa +")'>Sửa</a></td></tr>";
-        tongtien += giohang[i].soluong * giohang[i].dongia;
-    }
-    kq += "<tr><td colspan='7' align='right'>Tổng tiền :" + tongtien + "</td></tr>";
-    kq += "</table";
-    return kq;
+    kq += "<div class='product'>"
+    kq += "<div class='product-image'>"
+    
+    kq += "  <img src='images/" + giohang[i].hinhsp +"'/>"
+    kq += "</div>"
+    kq += "<div class='product-details'>"
+    kq += "  <div class='product-title'>" + giohang[i].tensp +"</div>"
+    kq += "</div>"
+    kq += "<div class='product-price'> " + giohang[i].dongia +"vnd</div>"
+    kq += "<div class='product-quantity'> " + giohang[i].soluong +"</div>"
+    kq += "<div class='product-removal'>"
+    kq += "  <button class='remove-product'>"
+    kq += "    Xóa"
+    kq += "  </button>"
+    kq += "</div>"
+    kq += "<div class='product-line-price'>" + giohang[i].soluong * giohang[i].dongia +"vnd</div>"
+    kq += "</div>";
+    tongtien += giohang[i].soluong * giohang[i].dongia;
 
-};*/
+}
+kq += "<div class='totals'>"
+kq += "<div class='totals-item totals-item-total'>"
+kq += "<label>TỔNG CỘNG</label>"
+kq += "<div class='totals-value' id='cart-total'> " + tongtien + "vnd</div>"
+kq += "  </div>"
+kq += "  </div>"
+    return kq;
+};
 
 module.exports.HienThiSP = async function (maloai) {
     var mysql = require('mysql2/promise');
@@ -128,17 +134,56 @@ module.exports.HienThiSP = async function (maloai) {
     var kq;
     for (i = 0; i < Bangsp.length; i++) {
         if (i % 6 == 0)
-        kq += "<ul class='nospace clear'>";
+            kq += "<ul class='nospace clear'>";
             kq += "<li class='one_quarter'>"
             kq += "<div class='card'>";
             kq += "<img width= '200px' height='200px' src='images/" + Bangsp[i].HINH + "'/>"
             kq += "<a href='/?sanpham=1&masp=" + Bangsp[i].MASP + "'> ";
             kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p></a>";
             kq += "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
-            kq += "<a href='/?mua=1&masp=" + Bangsp[i].MASP +"'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
+            kq += "<a href='/?muasp=" + Bangsp[i].MASP + "&tensp=";
+            kq += Bangsp[i].TENSP + "&dongia=" + Bangsp[i].DONGIA + "&hinh=" + Bangsp[i].HINH + "'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
             kq += "</div>"
             kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
-        if ((i + 1) % 6 == 0)
+            if ((i + 1) % 6 == 0)
+            kq += "</ul>";
+    }
+    return kq;
+};
+
+module.exports.HienThiSPTen = async function (tensp) {
+    var mysql = require('mysql2/promise');
+    var pool = mysql.createPool({
+        host: 'localhost',
+        user: 'root',
+        database: 'quanlibandua',
+        password: '',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0
+    });
+    var dssp;
+    if (tensp == 0){
+        dssp = await pool.query('select  * from sanpham');
+    }   
+        else
+        dssp = await pool.query("select  * from sanpham where tensp like'%" + tensp + "%' or mota like '%" + tensp +"%'");
+    Bangsp = dssp[0];
+    var kq;
+    for (i = 0; i < Bangsp.length; i++) {
+        if (i % 6 == 0)
+            kq += "<ul class='nospace clear'>";
+            kq += "<li class='one_quarter'>"
+            kq += "<div class='card'>";
+            kq += "<img width= '200px' height='200px' src='images/" + Bangsp[i].HINH + "'/>"
+            kq += "<a href='/?sanpham=1&masp=" + Bangsp[i].MASP + "'> ";
+            kq += "<p class='title'>&nbsp;"+ Bangsp[i].TENSP +"</p></a>";
+            kq += "<div class='Gia'>&nbsp;Giá:" + Bangsp[i].DONGIA + " VND&nbsp;&nbsp;&nbsp"
+            kq += "<a href='/?muasp=" + Bangsp[i].MASP + "&tensp=";
+            kq += Bangsp[i].TENSP + "&dongia=" + Bangsp[i].DONGIA + "&hinh=" + Bangsp[i].HINH + "'>" + "<i class='fa fa-lg fa-cart-plus'></i></a></div>";
+            kq += "</div>"
+            kq += "</li>&nbsp;&nbsp;&nbsp;&nbsp";
+            if ((i + 1) % 6 == 0)
             kq += "</ul>";
     }
     return kq;
@@ -170,7 +215,8 @@ module.exports.ChiTietSP = async function (masp) {
         kq += "<p><strong>Số lượng: </strong></p>"
         kq += "<div class='product-quantity'>";
         kq +=  "<input type='number' value='1' min='1'></div>";
-        kq += "<p><a href='#' class='buy-now btn btn-sm height-auto px-4 py-3 btn-primary'><i class='fa fa-lg fa-cart-plus'></i></a></p>";   
+        kq += "<p><a href='/?muasp=" + spht[0].MASP + "&tensp=";
+        kq += spht[0].TENSP + "&dongia=" + spht[0].DONGIA + "&hinh=" + spht[0].HINH + "' class='buy-now btn btn-sm height-auto px-4 py-3 btn-primary'><i class='fa fa-lg fa-cart-plus'></i></a></p>";   
         kq += "<br></td>";
         kq+="</tr > ";
         kq += "</table>";

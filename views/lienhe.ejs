@@ -18,11 +18,17 @@
 @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
 /* DEMO ONLY */
 </style>
+<script language="javascript" type="text/javascript">
+  function Timkiemsp()
+  {
+    var dd="http://localhost:8000/?sanpham=1&tensp="+ document.getElementById("sp").value 
+   window.open(dd);
+  }
+ </script>
 </head>
 <body id="top" >
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
-      <!-- ################################################################################################ -->
       <div class="fl_left">
         <ul class="nospace">
           <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
@@ -32,77 +38,61 @@
       <div class="fl_right">
         <ul class="nospace">
           <li><a href="http://localhost:8000/?index=1"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="http://localhost:8000/?dangnhap=1">Đăng nhập</a></li>
+        <li><%-hoten%></li>
+        <li><%-thoat%></li>
           <li><a href="#">Trợ giúp?</a></li>
         </ul>
       </div>
-      <!-- ################################################################################################ -->
     </div>
   </div>
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
-      <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
         <h1><a href="http://localhost:8000/?index=1">Coconut Store</a></h1>
         <p>Sản phẩm nguyên chất từ dừa</p>
       </div>
-      <!-- ################################################################################################ -->
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <form action="http://localhost:8000/?sanpham=1" method="GET">
-          <table><tr><td>
-          <li><div class="form-sub-w3ls">
-              <input placeholder="Bạn cần tìm ?"  type="text" id="sp" required="">
-            </div></li></td>
-            <td>
-          <li><div class="submit-w3l">
-              <input type="submit" value="Tìm" onclick="Timkiemsp();">
-            </div></li>
-          </td>
-          </tr>
-          </table>
-          </form>
+          <li>
+            <input placeholder="Bạn cần tìm ?"  type="text" id="sp" required="">
+        </li>
+        <li>
+				<input type="submit" value="Tìm" onclick="Timkiemsp();">
+        </li>
           <li><a href="http://localhost:8000/?thanhtoan=1"><em class="fa fa-lg fa-shopping-cart"></em></a></li>
           <li><a href="http://localhost:8000/?index=1">Trang chủ</a></li>
-        <li class="active"><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
+          <li><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
           <li><a href="http://localhost:8000/?baiviet=1">Cẩm nang</a></li>
-          <li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
+          <li class="active"><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
         </ul>
       </nav>
-      <!-- ################################################################################################ -->
     </header>
 </div>
-<!-- ################################################################################################ -->
 <div class="wrapper bgded bk_g1" style="background-image:url('images/backgrounds/Backgroundsp.jpg')">
   <div id="breadcrumb" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <ul>
       <li><a href="http://localhost:8000/?index=1">Trang chủ</a></li>
 		<li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
     </ul>
-    <!-- ################################################################################################ -->
   </div>
 </div>
 <div class="wrapper bgded bk_g2" style="background-image: url('images/backgrounds/background_lienhe2.jpg')">
   <div id="pageintro" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <article>
       <h2 class="heading"  style="text-align: center; color:#B97D2D"></h2>
     </article>
-    <!-- ################################################################################################ -->
   </div>
 </div>
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
     <div class="content"> 
-      <!-- ################################################################################################ -->
       <h2>Liên hệ</h2>
-      <!-- ################################################################################################ -->
       <div class="group btmspace-50 demo">
         <div class="one_half first">
 		<img src="images/map.PNG"/> 
-			<!--<div id="googleMap" style="width: 400px; height: 300px;">Google Map</div>-->
+      <!-- map online -->
+      <!--<div id="googleMap" style="width: 400px; height: 300px;">Google Map</div>-->
 		</div>
         <div class="one_half" style="background-color:white">
 		  <form  action="#" method="post" style="text-align: left">
@@ -131,14 +121,12 @@
 	   </div>
       </div>
     </div>
-    <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <h3 class="heading">Coconut Store</h3>
     <ul class="nospace inline pushright uppercase">
       <li><a href="http://localhost:8000/?index=1"><i class="fa fa-lg fa-home"></i></a></li>
@@ -158,7 +146,6 @@
       <p>Copyright &copy; 2019 - All Rights Reserved - <a href="http://localhost:8000/?index=1">Coconut Store</a></p>
       <p class="font-xs">Template by <a target="_blank" href="#">NHY</a></p>
     </div>
-    <!-- ################################################################################################ -->
   </footer>
 </div>
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>

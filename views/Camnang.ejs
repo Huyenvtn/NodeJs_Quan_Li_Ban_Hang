@@ -17,7 +17,6 @@
 <body id="top" >
 <div class="wrapper row0">
   <div id="topbar" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
@@ -27,64 +26,51 @@
     <div class="fl_right">
       <ul class="nospace">
         <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="http://localhost:8000/?dangnhap=1"><%= headline %></a></li>
+      <!--  <li><a href="http://localhost:8000/?dangnhap=1">Đăng nhập</a></li>
+        <li><a href="http://localhost:8000/?dangky=1">Đăng ký</a></li>-->
+        
+        <li><%-hoten%></li>
+        <li><%-thoat%></li>
         <li><a href="#">Trợ giúp?</a></li>
       </ul>
     </div>
-    <!-- ################################################################################################ -->
   </div>
 </div>
 <div class="wrapper row1" >
   <header id="header" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
       <h1><a href="http://localhost:8000/?index=1">Coconut Store</a></h1>
       <p>Sản phẩm nguyên chất từ dừa</p>
     </div>
-    <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <form action="http://localhost:8000/?sanpham=1" method="GET">
-        <table><tr><td>
-        <li><div class="form-sub-w3ls">
+        <li>
             <input placeholder="Bạn cần tìm ?"  type="text" id="sp" required="">
-          </div></li></td>
-          <td>
-        <li><div class="submit-w3l">
-						<input type="submit" value="Tìm" onclick="Timkiemsp();">
-          </div></li>
-        </td>
-        </tr>
-        </table>
-        </form>
+        </li>
+        <li>
+				<input type="submit" value="Tìm" onclick="Timkiemsp();">
+        </li>
         <li><a href="http://localhost:8000/?thanhtoan=1"><em class="fa fa-lg fa-shopping-cart"></em></a></li>
         <li><a href="http://localhost:8000/?index=1">Trang chủ</a></li>
-		  <li class="active"><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
-        <li><a href="http://localhost:8000/?baiviet=1">Cẩm nang</a></li>
+		    <li><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
+        <li class="active"><a href="http://localhost:8000/?baiviet=1">Cẩm nang</a></li>
         <li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li>
       </ul>
     </nav>
-    <!-- ################################################################################################ -->
   </header>
 </div>
-<!-- ################################################################################################ -->
 <div class="wrapper bgded overlay" style="background-image:url('public\images\backgrounds\Backgroundsp.jpg');">
   <div id="breadcrumb" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <ul>
       <li><a href="#">Trang chủ</a></li>
       <li><a href="#">Cẩm nang</a></li>
     </ul>
-    <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
 <div class="wrapper row3"  style="background-image:url('images/Background.jpg');">
   <main class="hoc container clear" > 
     <!-- main body -->
-    <!-- ################################################################################################ -->
     <div class="content"> 
-      <!-- ################################################################################################ -->
 		<h1 style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'"><b> Đặc sản miền Tây " Đuông dừa nước mắm".</b></h1>
       <img class="imgr borderedbox inspace-5" src="images/Duongdua1.jpg" alt="">
      <p><a href="#"><b>Vùng đất của dừa.</b></a><br>
@@ -94,7 +80,7 @@
 
 		Bắt đuông dừa khá khó, ta phải chặt luôn cả cây dừa thì mới bắt được mấy con thôi. Đuông dừa khi được bắt về ta đem rửa sạch với nước muối, sau đó  để ráo. Mấy con đuông cứ lúc nhúc con nào con đó béo múp, vàng ươm. Nhớ lần đầu tôi ăn món "<a href="#">đuông dừa nước mắm</a>" mà sợ hãi, mấy con đuông cứ ngọ nguậy trong dĩa nước mắm mà cứ rùng mình, nhưng khi ăn rồi lại nghiền. Bỏ vô miệng cắn một miếng, sữa đuông như tan chảy trong miệng hòa quyện cùng vị cay cùng mặn của nước mắm thật khó tả. </p>
       <img class="imgl borderedbox inspace-5" src="images/duong dua tam mam.jpg" alt="">
-      <p><a href="http://www.os-templates.com/" title="Free Website Templates"><b>Đuông dừa và chuyện người nông dân.</b></a><br>
+      <p><a href="#" title="NHY Created"><b>Đuông dừa và chuyện người nông dân.</b></a><br>
 		  Ngoài  món "<a href="#">đuông dừa nước mắm</a>" thì đuông dừa khi chiên lên thì cũng ngon hết sảy. Con đuông dừa béo múp đem lên chảo rang đều tay cho đến khi vàng đều. Ngày mưa một dĩa đuông dừa chiên mắm, chén  mắm dằm ớt, vài ly rượu cùng anh em bạn bè trong xóm thì hết sảy. vừa nhắm mồi vừa ngắm mưa tám nhảm về những câu chuyện ngày xưa ấy, quên đi cái mệt nhọc của người nhà nông. Bình dị mà đầm ấm lắm.</p><br><br>
 	  </div>
       <div id="comments">
@@ -140,15 +126,12 @@
           </div>
         </form>
       </div>
-      <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <h3 class="heading">Coconut Store</h3>
     <ul class="nospace inline pushright uppercase">
       <li><a href="http://localhost:8000/?index=1"><i class="fa fa-lg fa-home"></i></a></li>
@@ -168,10 +151,8 @@
       <p>Copyright &copy; 2019 - All Rights Reserved - <a href="http://localhost:8000/?index=1">Coconut Store</a></p>
       <p class="font-xs">Template by <a target="_blank" href="#">NHY</a></p>
     </div>
-    <!-- ################################################################################################ -->
   </footer>
 </div>
-<!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="javascripts/scripts/jquery.min.js"></script>

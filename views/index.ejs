@@ -6,12 +6,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="javascripts/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script language="javascript" type="text/javascript">
+  function Timkiemsp()
+  {
+    var dd="http://localhost:8000/?sanpham=1&tensp="+ document.getElementById("sp").value 
+   window.open(dd);
+  }
+ </script>
 </head>
 <body id="top">
-<!-- #######################################----HEADER----########################################### -->
+<!-- ----HEADER--- -->
 <div class="wrapper row0">
   <div id="topbar" class="hoc clear"> 
-    <!-- #####################################---SDT-EMAIL-MY ACCOUNT----################################ -->
+    <!-----SDT-EMAIL-MY ACCOUNT----->
     <div class="fl_left">
       <ul class="nospace">
         <li><em class="fa fa-phone"></em> +00 (123) 456 7890</li>
@@ -21,15 +28,14 @@
     <div class="fl_right">
       <ul class="nospace">
         <li><a href="http://localhost:8000/?dangnhap=1"><em class="fa fa-lg fa-user"></em></a></li>
-		<li><a href="http://localhost:8000/?dangnhap=1">Đăng nhập</a></li>
-        <li><a href="http://localhost:8000/?dangky=1">Đăng ký</a></li>
+        <li><%-hoten%></li>
+        <li><%-thoat%></li>
         <li><a href="/?lienhe=1">Trợ giúp?</a></li>
       </ul>
     </div>
-	<!--########################################################################################-->
   </div>
 </div>
-<!-- ######################################--------SITE MAP---############################################ -->
+<!--------SITE MAP-- -->
 <div class="wrapper row1">
   <header id="header" class="hoc clear"> 
     <div id="logo" class="fl_left">
@@ -38,22 +44,22 @@
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><div class="form-sub-w3ls">
-            <input placeholder="Bạn cần tìm ?"  type="text" required="">
-          </div></li>
-        <li><div class="submit-w3l">
-						<input type="submit" value="Tìm">
-          </div></li>
+        <li>
+          <input placeholder="Bạn cần tìm ?"  type="text" id="sp" required="">
+      </li>
+      <li>
+      <input type="submit" value="Tìm" onclick="Timkiemsp();">
+      </li>
         <li><a href="http://localhost:8000/?thanhtoan=1"><em class="fa fa-lg fa-shopping-cart"></em></a></li>
         <li class="active"><a href="http://localhost:8000/?index=1">Trang Chủ</a></li>
 		    <li><a href="http://localhost:8000/?sanpham=1">Sản phẩm</a></li>
-        <li><a href="http://localhost:8000/?baiviet=1">Bài viết</a></li>
+        <li><a href="http://localhost:8000/?baiviet=1">Cẩm nang</a></li>
         <li><a href="http://localhost:8000/?lienhe=1">Liên hệ</a></li> 
       </ul>
     </nav>
   </header>
 </div>
-<!-- ####################################-------BODY--(IMAGE)-------############################################## -->
+<!--------BODY--(IMAGE)-------->
 <div class="wrapper bgded" style="background-image:url('images/Background.jpg');">
   <div id="pageintro" class="hoc clear"> 
     <article>
@@ -63,13 +69,13 @@
     </article>
   </div>
 </div>
-<!-- ##########################################<!----BODY(TEXT)-------##################################### -->
+<!---BODY(TEXT)------ -->
 <div class="wrapper row3" >
   <div id="services" class="hoc clear"> 
     <div class="table">
       <div class="table-row"> 
-        <!-- ###################################---main body 1-------#################################### -->
-		  <!--###################Chèn hinh__________-->
+        <!-----main body 1------->
+		  <!--Chèn hinh-->
         <div class="table-cell">
           <article><a href="http://localhost:8000/?sanpham=1&maloai=1"><i class="fa fa-fire"></i></a>
             <h6 class="heading">Mỹ Phẩm</h6>
@@ -95,22 +101,22 @@
     </div>
   </div>
 </div>
-<!-- ################################################----main body 1---############################## -->
+<!----main body 1---->
 <div class="wrapper row3">
   <main class="hoc container clear"> 
-    <!--##################################<!-- main body 2--##################################-->
+    <!--- main body 2---->
     <div class="center btmspace-80">
       <h3 class="heading">Chúng tôi  "Coconut Store" !</h3>
       <p class="nospace">Dừa xanh UIT chuyên cung cấp sỉ và lẻ tất cả các sản phẩm từ dừa: Giải khát, mỹ nghệ, ăn vặt và làm đẹp. Các sản phảm của chúng tôi xuất xứ tại Bến Tre với tiêu chí luôn đảm bảo an toàn chất lượng, nguyên chất tự nhiên, nói không với hoá chất, thân thiện với môi trường, giá rẻ và chính sách giao hàng miễn phí nhanh nhất.</p>
     </div>
-    <!--#################################<!-- / main body 2 --##################################-->
+    <!---- / main body 2 --->
     <div class="clear"></div>
   </main>
 </div>
-<!--#####################################<!--BODY--###############################	-->
+<!---BODY--->
 	
 	
-<!--####################################<!--FOOTER--######################################################-->
+<!----FOOTER---->
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <h3 class="heading">Coconut Store</h3>
@@ -133,8 +139,8 @@
     </div>
   </footer>
 </div>
-<!--###########################################---FOOTER----#################################################-->	
-<!--#######Tạo Button về đầu trang#####################-->
+<!-----FOOTER------>	
+<!----Tạo Button về đầu trang-->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a><!-- button về đầu trang -->
 <!-- JAVASCRIPTS -->
 <script src="javascripts/scripts/jquery.min.js"></script>
