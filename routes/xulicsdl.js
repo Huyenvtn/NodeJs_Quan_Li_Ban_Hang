@@ -165,8 +165,7 @@ module.exports.HienThiSPTen = async function (tensp) {
     var dssp;
     if (tensp == 0){
         dssp = await pool.query('select  * from sanpham');
-    }   
-        else
+    }   else
         dssp = await pool.query("select  * from sanpham where tensp like'%" + tensp + "%' or mota like '%" + tensp +"%'");
     Bangsp = dssp[0];
     var kq;
